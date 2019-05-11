@@ -5,13 +5,15 @@ const morgan = require('morgan');
 const cors = require('cors');
 const routes = require('./routes');
 
-//const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
-
+const morganLog =
+  process.env.NODE_ENV === 'production' ? morgan('common') : morgan('dev');
+app.use(helmet()); 
+app.use(morganLog);
+app.use(cors());
 app.use(express.json());         // bodyparser package, 把req和res中body的数据转义呈现出来
-
-
 
 // app.get('/posts', (req, res) => {
 // 	res.json(posts);
@@ -69,6 +71,6 @@ app.use(express.json());         // bodyparser package, 把req和res中body的�
 
 app.use('/v1', routes);
 
-app.listen(3000, () => {
-  console.log(`server listen on port 3000`);
+app.listen(PORT, () => {
+  console.log(`server listen on port ${PORT}`);
 });
