@@ -48,7 +48,7 @@
 
 
 const posts = [];
-let currentId = 1;
+let currentId = 0;
 
 function addPost(post) {
     const newPost = {...post, id: currentId++};

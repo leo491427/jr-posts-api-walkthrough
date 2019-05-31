@@ -2,7 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const helmet = require('helmet');
 const morgan = require('morgan');
-const cors = require('cors');
+// const cors = require('cors');
 const routes = require('./routes');
 
 const PORT = process.env.PORT || 3000;
@@ -12,7 +12,7 @@ const morganLog =
   process.env.NODE_ENV === 'production' ? morgan('common') : morgan('dev');
 app.use(helmet()); 
 app.use(morganLog);
-app.use(cors());
+// app.use(cors());
 app.use(express.json());         // bodyparser package, 把req和res中body的数据转义呈现出来
 
 // app.get('/posts', (req, res) => {
